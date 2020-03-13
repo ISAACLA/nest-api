@@ -28,7 +28,7 @@ export class TasksController {
     * Post using DTO
     * */
     @Post()
-    createTask(taskDto: TaskDto) {
+    createTask(@Body() taskDto: TaskDto) {
         return this.tasksService.createTask(taskDto)
     }
 }
