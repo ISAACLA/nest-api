@@ -1,10 +1,17 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { TaskStatus } from "./task.model";
+import {
+    BaseEntity,
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn, Index
+} from "typeorm";
+import { TaskStatus } from "./task.interface";
 
 @Entity()
 export class Task extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
     title: string;
@@ -14,4 +21,12 @@ export class Task extends BaseEntity {
 
     @Column()
     status: TaskStatus
+
+    @Index()
+    @CreateDateColumn()
+    createdAt: Date
+
+    @UpdateDateColumn()
+    updatedAt: Date
+
 }
